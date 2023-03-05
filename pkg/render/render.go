@@ -7,9 +7,10 @@ import (
 	"net/http"
 	"path/filepath"
 	"workspace/pkg/config"
+	"workspace/pkg/models"
 )
 
-//var functions = template.FuncMap{}
+var functions = template.FuncMap{}
 
 var app *config.AppConfig
 
@@ -19,7 +20,7 @@ func NewTemplates(a *config.AppConfig) {
 }
 
 // RenderTemplate renders templates using html/template
-func RenderTemplate(w http.ResponseWriter, tmpl string) {
+func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
 
 	var tc map[string]*template.Template
 	if app.UseCache {
